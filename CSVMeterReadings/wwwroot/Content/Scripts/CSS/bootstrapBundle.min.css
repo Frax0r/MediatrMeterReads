@@ -12623,7 +12623,7 @@ h6 {
 #intro .intro-info .btn-services:hover,
 .uploadCsvLB:hover 
 {
-    background: #0a98c0;
+            background: #0a98c0;
 }
 
 input[type="file"] {
@@ -12919,8 +12919,8 @@ margin-top:10px;
 }
 
 .bg-ensek {
-    background-color: #f66e3e;
-    color: white;
+    background: #f66e3e;
+    color: #fff;
 }
 
 .ftContainer {
