@@ -6,7 +6,7 @@ namespace CSVMeterReadings.Presenter
 {
     public class Presenter
     {
-        public async Task<ViewModel<TView>> GetViewModel<TView, TInput>(ViewModelBuilder<TView, TInput> vmBuilder, TInput inputObject) where TView : class, new()
+        internal async Task<ViewModel<TView>> GetViewModel<TView, TInput>(ViewModelBuilder<TView, TInput> vmBuilder, TInput inputObject) where TView : class, new()
         {
 
             vmBuilder.SetInputObject(inputObject);

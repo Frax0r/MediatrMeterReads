@@ -8,19 +8,19 @@ using MediatR;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
-    public class CSVUploadVMBuilder : ViewModelBuilder<FileUploadVM, IFormFile>
+    internal class CSVUploadVMBuilder : ViewModelBuilder<FileUploadVM, IFormFile>
     {
         private readonly Mediator _mediator;
         private readonly IMapper _mapper;
 
-        public CSVUploadVMBuilder(Mediator mediator, IMapper mapper)
+        internal CSVUploadVMBuilder(Mediator mediator, IMapper mapper)
         {
             _ViewModel = new ViewModel<FileUploadVM>();
             _mediator = mediator;
             _mapper = mapper;
         }
 
-        public override async Task BuildViewModel()
+        internal override async Task BuildViewModel()
         {
             FileUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
 

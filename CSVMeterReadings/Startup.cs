@@ -4,9 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CSVMeterReadings.Service;
 using FluentValidation.AspNetCore;
 using CSVMeterReadings.AutoMapper;
+using CSVMeterReadings.Service;
+using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
 
@@ -58,7 +59,7 @@ namespace ProtoType.Web
 
             app.UseRouting();
 
-            app.UseExceptionHandler("/CSVUpload/");
+            app.UseExceptionHandler("/Controllers/Error/");
 
             app.UseStatusCodePagesWithRedirects("/Error/Http?statusCode={0}");
 

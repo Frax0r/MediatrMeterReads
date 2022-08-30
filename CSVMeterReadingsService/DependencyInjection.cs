@@ -4,7 +4,7 @@ using System.Reflection;
 using CSVMeterReadingsService.Common.Behaviours;
 using FluentValidation;
 
-namespace CSVMeterReadings.Service
+namespace CSVMeterReadingsService
 {
     public static class DependencyInjection
     {

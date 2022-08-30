@@ -4,9 +4,9 @@ using CSVMeterReadingsService.Features.Readings.Models;
 
 namespace CSVMeterReadings.AutoMapper
 {
-    public class MappingProfile : Profile
+    internal class MappingProfile : Profile
     {
-        public MappingProfile()
+        internal MappingProfile()
         {
             CreateMap<MeterReadingDto, MeterReadingVM>();
             CreateMap<FileUploadDto, FileUploadVM>();
