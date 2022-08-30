@@ -8,7 +8,7 @@ namespace CSVMeterReadings.Service
 {
     public class CSVUploadService
     {
-       
+
         private readonly IConfiguration _configuration;
 
         public CSVUploadService(IConfiguration configuration)

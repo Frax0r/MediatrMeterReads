@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.DbContext
 {
-    public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
+    internal class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         private readonly string _connectionString;
 
-        public ApplicationDbContext(string connectionString)
+        internal ApplicationDbContext(string connectionString)
         {
             _connectionString = connectionString;
         }
