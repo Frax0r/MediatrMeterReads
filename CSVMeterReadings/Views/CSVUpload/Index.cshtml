@@ -1,0 +1,125 @@
+﻿@using CSVMeterReadings.ViewModel;
+@model ViewModel<CSVMeterReadings.ViewModel.FileUploadVM>
+
+<script type="text/javascript" src="~/Content/Scripts/JS/UploadCSV/CSVUploader.min.js"></script>
+
+@using (Html.BeginForm("MeterReadingUploads", "CSVUpload", FormMethod.Post, new { enctype = "multipart/form-data", id = "headerForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="text-danger">
+        @Html.ValidationSummary(true)
+    </div>
+
+    <section id="intro" class="row">
+
+        <div class="container d-flex h-100">
+
+            <div class="row justify-content-center mainContainter col-md-12">
+
+                <div class="col-md-5 intro-info order-md-first order-first">
+                    <h2>
+                        Meter Reading <br>
+                        <span>Upload</span>
+                    </h2>
+                    <div>
+                        <a href="#about" class="btn-get-started scrollto">Or Enter A Single Meter Reading</a>
+                    </div>
+                </div>
+
+                <div class="col-md-5 intro-img">
+                    <div class="form-group ">
+                        <div class="text-danger">
+                            @Html.ValidationSummary(false)
+                        </div>
+
+                        <label class="uploadCsvLB">
+                            <input type="file" name="file" id="fileSelect" accept=".csv" />
+                            <i class="fa fa-upload"></i> Upload CSV File
+                        </label>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @if (Model?.Core?.MeterReadings?.Count() > 0)
+        {
+            <div class="modal fade" id="DynamicModal" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog autoWidth modal-dialog-scrollable" id="modalDialog">
+                    <div class="modal-content" id="modalContent">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalTitle">
+                                Meter Readings
+                            </h4>
+                           
+                        </div>
+                        <div class="modal-body">
+                            <p id="modalMessage">
+                                Number Of Records Uploaded: @Model.Core.SavedCount <br />
+                                Number Of Records Not Uploaded:  @Model.Core.NotSavedCount  <br />
+                                The below table shows the upload results:
+                                <div class="table-responsive">
+                                    <div class="tableContainment" id="dtDynamicTableContainment">
+                                        <table id="dtMeterReadingRecords" class="table table-striped table-bordered table-sm nowrap tablegrid" cellspacing="0" data-toggle="table"
+                                               data-search="true">
+
+                                            <thead class="bg-ensek">
+                                                <tr>
+                                                    <th>
+                                                        AccountId
+                                                    </th>
+                                                    <th>
+                                                        MeterReadingDateTime
+                                                    </th>
+                                                    <th>
+                                                        MeterReadValue
+                                                    </th>
+                                                    <th>
+                                                        Upload Result
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model.Core.MeterReadings)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.AccountId)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.MeterReadingDateTime)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.MeterReadValue)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.UploadResult)
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </p>
+                        </div>
+                        <div class="modal-footer justify-content-right" id="modalFooter">
+                           <button class="btn btn-outline-dark closeModel" onclick="return false">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </section>
+
+ }

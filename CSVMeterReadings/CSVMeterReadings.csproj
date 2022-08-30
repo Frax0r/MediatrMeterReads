@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="FluentValidation" Version="11.2.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSVMeterReadingsService\CSVMeterReadingsService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Content\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\Content\Images\close.png" />
+    <None Include="wwwroot\Content\Images\favicon-32x32.png" />
+    <None Include="wwwroot\Content\Images\next.png" />
+    <None Include="wwwroot\Content\Images\prev.png" />
+    <None Include="wwwroot\Content\Scripts\CSS\bootstrap.css" />
+    <None Include="wwwroot\Content\Scripts\CSS\bootstrapBundle.min.css" />
+    <None Include="wwwroot\Content\Scripts\CSS\font-awesome-v4.7.0.css" />
+    <None Include="wwwroot\Content\Scripts\CSS\style.css" />
+    <None Include="wwwroot\Content\Scripts\JS\bootstrap.js" />
+    <None Include="wwwroot\Content\Scripts\JS\bootstrapBundle.min.js" />
+    <None Include="wwwroot\Content\Scripts\JS\jquery.js" />
+    <None Include="wwwroot\Content\Scripts\JS\jquery.validate.min.js" />
+    <None Include="wwwroot\Content\Scripts\JS\jquery.validate.unobtrusive.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Content\Scripts\JS\Utils\" />
+  </ItemGroup>
+
+</Project>

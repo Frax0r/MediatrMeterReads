@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ensek: Enable Better - Meter Read Uploader</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href=@Url.Content("~/Content/Images/favicon-32x32.png") rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+    <script type="text/javascript" src="~/Content/Scripts/JS/bootstrapBundle.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Scripts/CSS/bootstrapBundle.min.css" />
+</head>
+
+
+<body>
+    <header id="header">
+        <div id="topbar">
+            <div class="container">
+                @{Html.RenderPartialAsync("_SocialLinks");}
+            </div>
+        </div>
+
+        <div id="overLay">
+            <div id="spinnerHolderDiv">
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="logo float-left">
+                <svg width="118" height="40" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <path id="a" d="M0 39.932h117.103V0H0z"></path>
+                    </defs>
+                    <g fill="none" fill-rule="evenodd">
+                        <path d="M58.317 10.552c-3.02-.568-4.693-1.055-4.693-2.476 0-1.177.898-2.11 3.224-2.11 2.408 0 5.48.975 7.774 2.4l3.44-5.609C65.77 1.11 61.663 0 57.298 0c-6.978 0-10.855 3.937-10.855 8.482 0 7.364 6.453 7.712 10.855 8.821 2.87.724 4.355.996 4.355 2.538 0 1.299-1.254 2.156-3.661 2.156-3.714 0-6.107-1.033-8.569-2.387l-3.346 5.656c1.243.951 6.08 2.698 11.588 2.698 7.305 0 11.345-3.612 11.345-9.051 0-6.129-6.203-7.427-10.692-8.36M117.103.752L108.72.76l-8.06 9.514V.76h-6.882v26.432h6.882v-9.696l8.06 9.687 8.255.009-10.534-13.897z" fill="currentColor"></path>
+                        <path fill="#F66E3E" d="M.223 39.932h44.42v-6.37H.222z"></path>
+                        <path fill="currentColor" d="M70.453.76v26.431h21.222v-6.37h-14.34v-3.66h10.102v-6.37H77.335v-3.66h14.34V.76h-14.34zM6.883 20.821v-3.66h10.325v-6.37H6.883v-3.66h14.562v13.69H6.883zm30.877-5.519L28.328.761H0v26.43H28.328V13.002l9.432 14.19h6.882V.76H37.76v14.541z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#intro">Upload Meter Readings</a></li>
+
+                    <li><a href="#footer">Contact Us</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer id="footer" class="section-bg">
+        <div class="footer-top">
+            <div class="container ftContainer">
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="footer-info">
+                                    <h3>ENSEK LTD</h3>
+                                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                                </div>
+
+                                <div class="footer-newsletter">
+                                    <h4>Our Newsletter</h4>
+                                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
+                                    <form action="" method="post">
+                                        <input type="email" name="email" onclick="return false;"><input type="submit" value="Subscribe" onclick="return false">
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="footer-links">
+                                    <h4>Useful Links</h4>
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Terms of service</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="footer-links">
+                                    <h4>Contact Us</h4>
+                                    <p>
+                                        ENSEK Ltd <br>
+                                        30-34 Hounds Gate<br>
+                                        Nottingham <br>
+                                        NG1 7AB <br />
+                                        <strong>Phone:</strong> +44(0)115 710 0180<br>
+                                        <strong>Email:</strong> info@example.com<br>
+                                    </p>
+                                </div>
+
+                                @{Html.RenderPartialAsync("_SocialLinks");}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form">
+
+                            <h4>Send us a message</h4>
+                            <p>Eos ipsa est voluptates. Nostrum nam libero ipsa vero. Debitis quasi sit eaque numquam similique commodi harum aut temporibus.</p>
+                            <form action="" method="post" role="form" class="contactForm">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <div class="validation"></div>
+                                </div>
+
+                                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                                <div id="errormessage"></div>
+
+                                <div class="text-center"><button type="submit" title="Send Message" onclick="return false;">Send Message</button></div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>ENSEK Ltd</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Designed by Eddy
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

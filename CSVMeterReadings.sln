@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31529.145
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadings", "CSVMeterReadings\CSVMeterReadings.csproj", "{78152249-FE16-47D2-85BB-BD7C8F47F739}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{AF25D25D-A7D5-4468-B347-B6D70B5577B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{D860CDA4-3400-4D9B-946C-7D594BC65C78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadingsService", "CSVMeterReadingsService\CSVMeterReadingsService.csproj", "{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{E1809F50-8ACC-4784-A67A-EE285F87DBEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadingsModels", "CSVMeterReadingsModels\CSVMeterReadingsModels.csproj", "{571278DE-E447-4E2A-93F4-841D70A830A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{18605A7B-EB39-4D88-80C9-90DC1C1153FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "CSVRepository\Repository.csproj", "{1E022584-93F1-4611-8D5D-05C4DD53DA3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVMeterReadingsUnit", "CSVMeterReadingsUnit\CSVMeterReadingsUnit.csproj", "{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78152249-FE16-47D2-85BB-BD7C8F47F739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78152249-FE16-47D2-85BB-BD7C8F47F739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78152249-FE16-47D2-85BB-BD7C8F47F739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78152249-FE16-47D2-85BB-BD7C8F47F739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{571278DE-E447-4E2A-93F4-841D70A830A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{571278DE-E447-4E2A-93F4-841D70A830A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{571278DE-E447-4E2A-93F4-841D70A830A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{571278DE-E447-4E2A-93F4-841D70A830A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E022584-93F1-4611-8D5D-05C4DD53DA3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E022584-93F1-4611-8D5D-05C4DD53DA3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E022584-93F1-4611-8D5D-05C4DD53DA3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E022584-93F1-4611-8D5D-05C4DD53DA3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{78152249-FE16-47D2-85BB-BD7C8F47F739} = {AF25D25D-A7D5-4468-B347-B6D70B5577B9}
+		{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97} = {D860CDA4-3400-4D9B-946C-7D594BC65C78}
+		{571278DE-E447-4E2A-93F4-841D70A830A9} = {E1809F50-8ACC-4784-A67A-EE285F87DBEB}
+		{1E022584-93F1-4611-8D5D-05C4DD53DA3C} = {18605A7B-EB39-4D88-80C9-90DC1C1153FC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7B8CE3A-BDC4-40B9-AE4F-9E4F5577E8E5}
+	EndGlobalSection
+EndGlobal

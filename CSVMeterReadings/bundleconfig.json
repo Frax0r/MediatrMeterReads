@@ -1,0 +1,52 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/Content/Scripts/JS/bootstrapBundle.min.js",
+    "inputFiles": [
+      "wwwroot/Content/Scripts/JS/bootstrap.js",
+      "wwwroot/Content/Scripts/JS/jquery.js",
+      "wwwroot/Content/Scripts/JS/jquery.validate.min.js",
+      "wwwroot/Content/Scripts/JS/jquery.validate.unobtrusive.min.js",
+      "wwwroot/Content/Scripts/JS/easing.min.js",
+      "wwwroot/Content/Scripts/JS/mobile-nav.js",
+      "wwwroot/Content/Scripts/JS/wow.min.js",
+      "wwwroot/Content/Scripts/JS/main.js",
+      "wwwroot/Content/Scripts/JS/jquery.dataTables.min.js"
+
+
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/Content/Scripts/JS/UploadCSV/CSVUploader.min.js",
+    "inputFiles": [
+      "wwwroot/Content/Scripts/JS/UploadCSV/CSVUploader.js",
+      "wwwroot/Content/Scripts/JS/Utils/siteJs.js",
+      "wwwroot/Content/Scripts/JS/Utils/spinner.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/Content/Scripts/CSS/bootstrapBundle.min.css",
+    "inputFiles": [
+      "wwwroot/Content/Scripts/CSS/bootstrap.css",
+      "wwwroot/Content/Scripts/CSS/font-awesome-v4.7.0.css",
+      "wwwroot/Content/Scripts/CSS/style.css",
+      "wwwroot/Content/Scripts/CSS/jquery.dataTables.min.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  }
+]
+
+
+
+
+
