@@ -10,7 +10,7 @@ namespace Repository
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IRepository<Account>, MeterReadingDataRepository<Account>>();
-            services.AddTransient<IRepository<MeterReading>, MeterReadingDataRepository < MeterReading>>();
+            services.AddTransient<IRepository<MeterReading>, MeterReadingDataRepository <MeterReading>>();
             return services;
         }
     }

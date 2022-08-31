@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using CSVMeterReadings.ViewModel;
@@ -11,7 +10,7 @@ namespace CSVMeterReadings.Controllers
 {
     public class CSVUploadController : BaseController
     {
-        public CSVUploadController(IConfiguration configuration, IMapper mapper, ISender mediator)
+        public CSVUploadController(IMapper mapper, IMediator mediator)
         {
             _mapper = mapper;
             _mediator = (Mediator)mediator;

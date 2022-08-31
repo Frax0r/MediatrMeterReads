@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
 using CSVMeterReadings.AutoMapper;
 using CSVMeterReadings.Service;
 using CSVMeterReadingsService;
@@ -19,7 +18,7 @@ namespace ProtoType.Web
         {
             Configuration = configuration;
 
-            // This is Not Applicaiton Code this is just used to seed the database with accounts data
+            // This is Not Application Code this is just used to seed the database with accounts data
             CSVUploadService.SeedAccounts(configuration);
         }
 
@@ -34,8 +33,6 @@ namespace ProtoType.Web
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
-
-            services.AddFluentValidationAutoValidation();
 
             IMapper mapper = new MapperConfiguration(mc =>
             {
