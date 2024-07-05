@@ -49,9 +49,9 @@ namespace Repository
         }
 
         // Will create CustomerAccountsDB if not exists on server
-        public void CreateDb()
+        public async Task CreateDbAsync(CancellationToken cancellationToken)
         {
-            _context.Database.EnsureCreated();
+            await _context.Database.EnsureCreatedAsync(cancellationToken);
         }
     }
 }

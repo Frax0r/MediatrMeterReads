@@ -9,12 +9,9 @@ $(document).ready(function () {
     $(".pbButton").click(function (e) {
         ShowLoader();
     });
-
     $('#hideSpinnerBn').click(function (e) {
-
         StopLoader();
     });
-
     $('.closeModel').click(function(e){
         HideDynamicModal();
     });

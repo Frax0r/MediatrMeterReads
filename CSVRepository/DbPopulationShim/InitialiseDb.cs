@@ -8,12 +8,11 @@ namespace Repository.DbPopulationShim
     // Will create the accounts data
     public static class InitialiseDb
     {
-        public static async Task Seed(MeterReadingDataRepository<Account> rpos)
+        public static async Task SeedAsync(MeterReadingDataRepository<Account> rpos, CancellationToken cancellationToken)
         {
             try
-            {
-                CancellationToken cancellationToken = new CancellationToken();
-                rpos.CreateDb();
+            {              
+                await rpos.CreateDbAsync(cancellationToken);
                 if (await rpos.GetByID(2344, cancellationToken) == null){await rpos.Insert(new Account(2344,"Tommy",   "Test")); }
                 if (await rpos.GetByID(2233, cancellationToken) == null){await rpos.Insert(new Account(2233,"Barry",   "Test")); }
                 if (await rpos.GetByID(8766, cancellationToken) == null){await rpos.Insert(new Account(8766,"Sally",   "Test")); }

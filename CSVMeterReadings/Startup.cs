@@ -9,20 +9,22 @@ using CSVMeterReadings.Service;
 using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace ProtoType.Web
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
             // This is Not Application Code this is just used to seed the database with accounts data
-            CSVUploadService.SeedAccounts(configuration);
+            Task.FromResult(CSVUploadService.SeedAccountsAsync(configuration, new CancellationToken()));
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -56,7 +58,7 @@ namespace ProtoType.Web
 
             app.UseRouting();
 
-            app.UseExceptionHandler("/Controllers/Error/");
+            app.UseExceptionHandler("/error");
 
             app.UseStatusCodePagesWithRedirects("/Error/Http?statusCode={0}");
 

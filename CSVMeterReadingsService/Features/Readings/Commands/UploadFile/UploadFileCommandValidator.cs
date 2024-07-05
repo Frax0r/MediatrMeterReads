@@ -10,7 +10,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 {
     public class UploadFileCommandValidator : AbstractValidator<UploadFileCommand>
     {
-        private readonly List<string> _requiredFileColumns = new List<string>
+        private static readonly List<string> _requiredFileColumns = new List<string>
             {"AccountId","MeterReadingDateTime","MeterReadValue"};
 
         public UploadFileCommandValidator()
@@ -30,7 +30,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
                 .WithMessage("File format incorrect");
         }
 
-        private bool HaveSupportedFileType(string filename)
+        private static bool HaveSupportedFileType(string filename)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
             }
         }
 
-        private bool HaveCorrectHeaders(UploadFileCommand request)
+        private static bool HaveCorrectHeaders(UploadFileCommand request)
         {
             try
             {
