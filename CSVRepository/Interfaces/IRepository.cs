@@ -12,6 +12,7 @@ namespace Repository.Interfaces
         Task<bool> InsertList(IEnumerable<T> entities);
         void SaveChanges();
         ValueTask<T> Find(object[] keys, CancellationToken cancellationToken);
+        Task CreateDbAsync(CancellationToken cancellationToken);
 
     }
 }

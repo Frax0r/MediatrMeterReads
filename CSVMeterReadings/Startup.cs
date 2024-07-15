@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CSVMeterReadings.AutoMapper;
-using CSVMeterReadings.Service;
 using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
 using System.Threading.Tasks;
 using System.Threading;
+using CSVMeterReadingsService.Services;
 
 namespace ProtoType.Web
 {
@@ -28,8 +28,9 @@ namespace ProtoType.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+           // services.AddUIServices();
             services.AddApplication();
-            services.AddInfrastructure(Configuration);
+            services.AddInfrastructure();
 
             services.AddControllersWithViews(options =>
             {
@@ -56,11 +57,11 @@ namespace ProtoType.Web
 
             app.UseStaticFiles();
 
-            app.UseRouting();
-
             app.UseExceptionHandler("/error");
 
             app.UseStatusCodePagesWithRedirects("/Error/Http?statusCode={0}");
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {              

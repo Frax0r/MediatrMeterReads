@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CSVMeterReadings.Controllers.Error
 {
@@ -8,10 +7,7 @@ namespace CSVMeterReadings.Controllers.Error
         [Route("/error")]
         public IActionResult Error()
         {
-            var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
-
-            var exception = context.Error;
-        
+          
             return View("Error");
         }
         public IActionResult Http(int statusCode)

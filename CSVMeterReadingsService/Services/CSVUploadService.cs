@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 // Not applcation code, this is used to seed accounts db as required!
-namespace CSVMeterReadings.Service
+namespace CSVMeterReadingsService.Services
 {
     public class CSVUploadService
     {

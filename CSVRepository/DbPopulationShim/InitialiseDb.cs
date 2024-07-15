@@ -1,4 +1,5 @@
 ﻿using CSVMeterReadings.Models;
+using Repository.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace Repository.DbPopulationShim
     // Will create the accounts data
     public static class InitialiseDb
     {
-        public static async Task SeedAsync(MeterReadingDataRepository<Account> rpos, CancellationToken cancellationToken)
+        public static async Task SeedAsync(IRepository<Account> rpos, CancellationToken cancellationToken)
         {
             try
             {              

@@ -15,9 +15,9 @@ namespace Repository
         private readonly ApplicationDbContext _context;
         private DbSet<T> _entities;
 
-        public MeterReadingDataRepository(IConfiguration configuration) {
-
-            this._context = new ApplicationDbContext(configuration.GetConnectionString("default"));
+        public MeterReadingDataRepository(IConfiguration configuration) 
+        {
+            _context = new ApplicationDbContext(configuration.GetConnectionString("default"));
             _entities = _context.Set<T>();
         }
 
