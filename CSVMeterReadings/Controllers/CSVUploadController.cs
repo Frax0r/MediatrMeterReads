@@ -4,16 +4,17 @@ using System.Threading.Tasks;
 using CSVMeterReadings.ViewModel;
 using MediatR;
 using CSVMeterReadings.Presenter;
+using CSVMeterReadingsService.Features.Readings.Commands.CreateReadings;
 
 namespace CSVMeterReadings.Controllers
 {
     public class CSVUploadController : BaseController
     {
-        private IPresenter<CSVUploadVM, IFormFile> _presenter;
-        public CSVUploadController(IMediator mediator, IPresenter<CSVUploadVM, IFormFile> presenter)
+       // private IPresenter<CSVUploadVM, IFormFile> _presenter;
+        public CSVUploadController(IMediator mediator)//, IPresenter<CSVUploadVM, IFormFile> presenter)
         {
             _mediator = (Mediator)mediator;
-            _presenter = presenter;
+          //  _presenter = presenter;
         }
 
         [HttpGet]
@@ -26,7 +27,7 @@ namespace CSVMeterReadings.Controllers
         [DisableRequestSizeLimit]
         public async Task<ActionResult> MeterReadingUploads(IFormFile file)
         {
-            ViewModel<CSVUploadVM> vm = await _presenter.GetViewModel(file);
+            ViewModel<CSVUploadVM> vm = await _mediator.Send(new GetUploadedFileViewModelCommand { UploadedFile = file } ); //await _presenter.GetViewModel(file);
 
             AddErrorsToModelState(vm.Core.ValidationResult);
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31529.145
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadings", "CSVMeterReadings\CSVMeterReadings.csproj", "{78152249-FE16-47D2-85BB-BD7C8F47F739}"
 EndProject
@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{D860
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadingsService", "CSVMeterReadingsService\CSVMeterReadingsService.csproj", "{5A437AA7-3581-4DCD-82D6-B8CE7CDFAE97}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{E1809F50-8ACC-4784-A67A-EE285F87DBEB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E1809F50-8ACC-4784-A67A-EE285F87DBEB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVMeterReadingsModels", "CSVMeterReadingsModels\CSVMeterReadingsModels.csproj", "{571278DE-E447-4E2A-93F4-841D70A830A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{18605A7B-EB39-4D88-80C9-90DC1C1153FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "CSVRepository\Repository.csproj", "{1E022584-93F1-4611-8D5D-05C4DD53DA3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "CSVRepository\Repository.csproj", "{1E022584-93F1-4611-8D5D-05C4DD53DA3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVMeterReadingsUnit", "CSVMeterReadingsUnit\CSVMeterReadingsUnit.csproj", "{7AD0D68A-2EAB-4EF3-A283-1D140D0C9ECE}"
 EndProject

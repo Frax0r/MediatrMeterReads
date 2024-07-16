@@ -6,7 +6,7 @@ namespace CSVMeterReadings.Presenter
 {
     public interface IPresenter<TViewModel, TInput> where TViewModel : class, new()
     {
-        internal Task<ViewModel<TViewModel>> GetViewModel(TInput inputObject);
+        internal Task<ViewModel<TViewModel>> GetViewModelAsync(TInput inputObject);
 
     }
 
@@ -19,7 +19,7 @@ namespace CSVMeterReadings.Presenter
             _vmBuilder = vmBuilder;
         }
 
-        public async Task<ViewModel<TViewModel>> GetViewModel(TInput inputObject)
+        public async Task<ViewModel<TViewModel>> GetViewModelAsync(TInput inputObject)
         {
             _vmBuilder.SetInputObject(inputObject);
 

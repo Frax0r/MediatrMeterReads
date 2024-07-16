@@ -23,7 +23,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
             using var reader = new StreamReader(request.File.OpenReadStream());
             using var csvReader = new CsvReader(reader, csvConfig);
 
-            return new FileUploadDto { MeterReadings = csvReader.GetRecords<MeterReadingDto>().ToList() };
+            return new FileUploadDto { MeterReadings = await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList()) };
         }
     }
 }
