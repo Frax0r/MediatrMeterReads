@@ -4,6 +4,12 @@ using CSVMeterReadings.ViewModel.ViewModelBuilder;
 
 namespace CSVMeterReadings.Presenter
 {
+    public interface IPresenter<TViewModel, TInput> where TViewModel : class, new()
+    {
+        internal Task<ViewModel<TViewModel>> GetViewModel(TInput inputObject);
+
+    }
+
     internal class Presenter<TViewModel, TInput> : IPresenter<TViewModel, TInput> where TViewModel : class, new()
     {
         private readonly IViewModelBuilder<TViewModel, TInput> _vmBuilder;
@@ -25,10 +31,5 @@ namespace CSVMeterReadings.Presenter
 
     }
 
-    public interface IPresenter<TViewModel, TInput> where TViewModel : class, new()
-    {
-        internal Task<ViewModel<TViewModel>> GetViewModel(TInput inputObject);
-
-    }
 }
 
