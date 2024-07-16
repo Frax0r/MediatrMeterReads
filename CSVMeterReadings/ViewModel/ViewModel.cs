@@ -1,7 +1,7 @@
 ﻿namespace CSVMeterReadings.ViewModel
 {
-    public class ViewModel<TView> where TView : class, new()
+    public class ViewModel<TViewModel> where TViewModel : class, new()
     {
-        public TView Core;
+        public TViewModel Core;
     }
 }

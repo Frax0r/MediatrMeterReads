@@ -11,6 +11,7 @@ using Repository;
 using System.Threading.Tasks;
 using System.Threading;
 using CSVMeterReadingsService.Services;
+using CSVMeterReadings;
 
 namespace ProtoType.Web
 {
@@ -28,7 +29,7 @@ namespace ProtoType.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-           // services.AddUIServices();
+            services.AddUIServices();
             services.AddApplication();
             services.AddInfrastructure();
 

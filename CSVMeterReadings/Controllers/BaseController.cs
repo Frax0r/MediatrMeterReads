@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using FluentValidation.Results;
 using MediatR;
 
@@ -8,10 +7,8 @@ namespace CSVMeterReadings.Controllers
     public abstract class BaseController : Controller
     {
         protected Mediator _mediator;
-        protected IMapper _mapper;
-        protected Presenter.Presenter _presenter;
 
-        protected void AddErrorToModelStateErrors(ValidationResult result)
+        protected void AddErrorsToModelState(ValidationResult result)
         {
             ModelState.Clear();
 

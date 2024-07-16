@@ -3,7 +3,7 @@ using CSVMeterReadingsService.Features.Readings.Models;
 
 namespace CSVMeterReadings.ViewModel
 {
-    public class FileUploadVM : ValidationDto
+    public class CSVUploadVM : ValidationDto
     {
         public IEnumerable<MeterReadingVM> MeterReadings { get; set; }
 

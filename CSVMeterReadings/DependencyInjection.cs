@@ -2,6 +2,7 @@
 using CSVMeterReadings.ViewModel.ViewModelBuilder;
 using CSVMeterReadings.ViewModel;
 using Microsoft.AspNetCore.Http;
+using CSVMeterReadings.Presenter;
 
 namespace CSVMeterReadings
 {
@@ -9,7 +10,8 @@ namespace CSVMeterReadings
     {
         public static IServiceCollection AddUIServices(this IServiceCollection services)
         {           
-           // services.AddScoped<IViewModelBuilder<FileUploadVM,IFormFile>, CSVUploadVMBuilder>();   
+            services.AddScoped<IViewModelBuilder<CSVUploadVM, IFormFile>, CSVUploadVMBuilder>();
+            services.AddScoped(typeof(IPresenter<, >), typeof(Presenter<, >));
             return services;
         }
     }

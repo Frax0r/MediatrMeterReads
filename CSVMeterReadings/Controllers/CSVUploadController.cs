@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using CSVMeterReadings.ViewModel;
-using CSVMeterReadings.ViewModel.ViewModelBuilder;
 using MediatR;
+using CSVMeterReadings.Presenter;
 
 namespace CSVMeterReadings.Controllers
 {
     public class CSVUploadController : BaseController
     {
-        public CSVUploadController(IMapper mapper, IMediator mediator)
+        private IPresenter<CSVUploadVM, IFormFile> _presenter;
+        public CSVUploadController(IMediator mediator, IPresenter<CSVUploadVM, IFormFile> presenter)
         {
-            _mapper = mapper;
             _mediator = (Mediator)mediator;
-            _presenter = new Presenter.Presenter();
+            _presenter = presenter;
         }
 
         [HttpGet]
@@ -27,9 +26,9 @@ namespace CSVMeterReadings.Controllers
         [DisableRequestSizeLimit]
         public async Task<ActionResult> MeterReadingUploads(IFormFile file)
         {
-            ViewModel<FileUploadVM> vm = await _presenter.GetViewModel(new CSVUploadVMBuilder(_mediator, _mapper), file);
+            ViewModel<CSVUploadVM> vm = await _presenter.GetViewModel(file);
 
-            AddErrorToModelStateErrors(vm.Core.ValidationResult);
+            AddErrorsToModelState(vm.Core.ValidationResult);
 
             return View("Index", vm);
 
