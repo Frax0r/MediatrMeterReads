@@ -19,7 +19,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
             _accountRepo = accountReadingRepo;
 
             RuleFor(e => e.MeterReading.AccountId)
-                .MustAsync(ValidateAccountId)
+                .MustAsync(ValidateAccountIdAsync)
                 .WithMessage("Account does not exist for meter reading");
 
             RuleFor(e => e.MeterReading.MeterReadValue)
@@ -27,11 +27,11 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
                 .WithMessage("Meter reading format invalid");
 
             RuleFor(e => e.MeterReading)
-                .MustAsync(ValidateMeterReading)
+                .MustAsync(ValidateMeterReadingAsync)
                 .WithMessage("Meter reading already exists");
         }
 
-        private async Task<bool> ValidateAccountId(ulong accountId, CancellationToken cancellationToken)
+        private async Task<bool> ValidateAccountIdAsync(ulong accountId, CancellationToken cancellationToken)
         {
             return await _accountRepo.GetByIDAsync(accountId, cancellationToken) != null;
         }
@@ -41,9 +41,9 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
             return Regex.IsMatch(readingValue, @"^[0-9]+$");
         }
 
-        private async Task<bool> ValidateMeterReading(MeterReadingDto meterReading, CancellationToken cancellationToken)
+        private async Task<bool> ValidateMeterReadingAsync(MeterReadingDto meterReading, CancellationToken cancellationToken)
         {
-            return await _meterReadingRepo.Find([meterReading.AccountId, meterReading.MeterReadingDateTime], cancellationToken) == null;
+            return await _meterReadingRepo.FindAsync([meterReading.AccountId, meterReading.MeterReadingDateTime], cancellationToken) == null;
         }
     }
 }

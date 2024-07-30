@@ -14,19 +14,19 @@ namespace Repository
         private readonly ApplicationDbContext _context;
         private DbSet<T> _entities;
 
-        public Repository(IConfiguration configuration) 
-        {
-            _context = new ApplicationDbContext(configuration.GetConnectionString("default"));
-            _entities = _context.Set<T>();
+        public Repository(ApplicationDbContext context)
+        {            
+               _context = context;
+               _entities = _context.Set<T>();
         }
 
         public IEnumerable<T> GetAll() => _entities.AsEnumerable();
 
         public async Task<T> GetByIDAsync(ulong id, CancellationToken cancellationToken) => await _entities.FindAsync([id], cancellationToken);
 
-        public async Task<T> Find(object[] keys, CancellationToken cancellationToken) => await _entities.FindAsync(keys, cancellationToken);
+        public async Task<T> FindAsync(object[] keys, CancellationToken cancellationToken) => await _entities.FindAsync(keys, cancellationToken);
 
-        public async Task<bool> Insert(T entity)
+        public async Task<bool> InsertAsync(T entity)
         {
             if(entity == null) return false;
 
@@ -35,21 +35,16 @@ namespace Repository
             return await _context.SaveChangesAsync() > 0 ? true : false;
         }
 
-        public async Task<bool> InsertList(IEnumerable<T> entities) 
+        public async Task<bool> InsertListAsync(IEnumerable<T> entities) 
         {
             _context.AddRange(entities);
             return await _context.SaveChangesAsync() > 0 ? true : false;
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        // Will create CustomerAccountsDB if not exists on server
-        public async Task CreateDbAsync(CancellationToken cancellationToken)
-        {
-            await _context.Database.EnsureCreatedAsync(cancellationToken);
-        }
     }
 }

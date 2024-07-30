@@ -26,7 +26,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
         {
             try
             {
-                if (!await _repo.Insert(_mapper.Map<MeterReadingDto, MeterReading>(request.MeterReading)))
+                if (!await _repo.InsertAsync(_mapper.Map<MeterReadingDto, MeterReading>(request.MeterReading)))
                     request.MeterReading.ValidationResult = new ValidationResult(new List<ValidationFailure> { _failedSave });
 
                 return request.MeterReading;

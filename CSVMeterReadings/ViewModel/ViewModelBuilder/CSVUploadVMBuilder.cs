@@ -24,24 +24,14 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
         {
             CSVUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
 
-           // await Task.WhenAll(fileUpload.MeterReadings.Select(r => ProcessMeterReadingDtoAsync(r)));
-
             foreach (MeterReadingDto meterReading in fileUpload.MeterReadings) 
             {
                 MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false);
                 meterReading.ValidationResult = reading.ValidationResult;
-            }
-
-           
+            }           
 
             _ViewModel.Core = _mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
 
         }
-
-       /* private async Task ProcessMeterReadingDtoAsync(MeterReadingDto meterReadingDto)
-        {
-            MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReadingDto }).ConfigureAwait(false);
-            meterReadingDto.ValidationResult = reading.ValidationResult;
-        } */
     }
 }

@@ -1,17 +1,14 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CSVMeterReadings.AutoMapper;
 using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
-using System.Threading.Tasks;
-using System.Threading;
-using CSVMeterReadingsService.Services;
 using CSVMeterReadings;
+using Microsoft.Extensions.Configuration;
+using Repository.DbContext;
 
 namespace ProtoType.Web
 {
@@ -22,21 +19,13 @@ namespace ProtoType.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            // This is Not Application Code this is just used to seed the database with accounts data
-            Task.FromResult(CSVUploadService.SeedAccountsAsync(configuration, new CancellationToken()));
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddUIServices();
+            services.AddInfrastructure(Configuration);            
             services.AddApplication();
-            services.AddInfrastructure();
-
-            services.AddControllersWithViews(options =>
-            {
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            });
+            services.AddUIServices();           
 
             IMapper mapper = new MapperConfiguration(mc =>
             {
@@ -45,12 +34,9 @@ namespace ProtoType.Web
                 mc.AddProfile(new ServiceMappingProfile());
             }).CreateMapper();
             services.AddSingleton(mapper);
-
-            services.AddRazorPages().AddRazorRuntimeCompilation();
-
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
             app.UseExceptionHandler("/error");
 
@@ -72,6 +58,8 @@ namespace ProtoType.Web
                 defaults: new { controller = "CSVUpload", action = "Index" });
             }
             );
+
+            context.Database.EnsureCreated();
         }
     }
 }

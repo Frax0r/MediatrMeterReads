@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using CSVMeterReadings.Presenter;
 using MediatR;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CSVMeterReadings
 {
@@ -15,6 +16,12 @@ namespace CSVMeterReadings
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<IViewModelBuilder<CSVUploadVM, IFormFile>, CSVUploadVMBuilder>();
             services.AddScoped(typeof(IPresenter<, >), typeof(Presenter<, >));
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             return services;
         }
     }

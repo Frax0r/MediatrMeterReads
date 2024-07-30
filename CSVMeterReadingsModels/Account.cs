@@ -24,6 +24,6 @@ namespace CSVMeterReadings.Models
           this.AccountId = AccountId;
           this.FirstName = FirstName;
           this.LastName = LastName;
-        }
+        } 
     }
 }

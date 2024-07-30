@@ -8,11 +8,10 @@ namespace Repository.Interfaces
     {
         IEnumerable<T> GetAll();
         Task<T> GetByIDAsync(ulong id, CancellationToken cancellationToken);
-        Task<T> Find(object[] keys, CancellationToken cancellationToken);
-        Task<bool> Insert(T entity);
-        Task<bool> InsertList(IEnumerable<T> entities);
-        void SaveChanges();
-        Task CreateDbAsync(CancellationToken cancellationToken);
+        Task<T> FindAsync(object[] keys, CancellationToken cancellationToken);
+        Task<bool> InsertAsync(T entity);
+        Task<bool> InsertListAsync(IEnumerable<T> entities);
+        Task SaveChangesAsync();     
 
     }
 }

@@ -16,7 +16,7 @@ namespace CSVMeterReadings.Controllers
 
         [HttpGet]
         public ActionResult Index()
-        {   
+        {
             return View();
         }
 
