@@ -38,7 +38,6 @@
     <None Include="wwwroot\Content\Scripts\CSS\font-awesome-v4.7.0.css" />
     <None Include="wwwroot\Content\Scripts\CSS\style.css" />
     <None Include="wwwroot\Content\Scripts\JS\bootstrap.js" />
-    <None Include="wwwroot\Content\Scripts\JS\bootstrapBundle.min.js" />
     <None Include="wwwroot\Content\Scripts\JS\jquery.js" />
     <None Include="wwwroot\Content\Scripts\JS\jquery.validate.min.js" />
     <None Include="wwwroot\Content\Scripts\JS\jquery.validate.unobtrusive.min.js" />

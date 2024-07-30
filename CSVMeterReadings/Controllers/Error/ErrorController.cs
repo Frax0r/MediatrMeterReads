@@ -6,8 +6,7 @@ namespace CSVMeterReadings.Controllers.Error
     {
         [Route("/error")]
         public IActionResult Error()
-        {
-          
+        {          
             return View("Error");
         }
         public IActionResult Http(int statusCode)

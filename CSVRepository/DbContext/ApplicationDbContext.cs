@@ -25,7 +25,6 @@ namespace Repository.DbContext
             modelBuilder.Entity<Account>().ToTable("Account");
 
             modelBuilder.Entity<MeterReading>().HasKey(m => new { m.AccountId, m.MeterReadingDateTime });
-
             modelBuilder.Entity<MeterReading>().ToTable("MeterReading");
 
         }

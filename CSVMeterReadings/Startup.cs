@@ -52,15 +52,15 @@ namespace ProtoType.Web
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionHandler("/error");
+
+            app.UseStatusCodePagesWithRedirects("/Error/Http?statusCode={0}");
+
             app.UseHsts();
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
-
-            app.UseExceptionHandler("/error");
-
-            app.UseStatusCodePagesWithRedirects("/Error/Http?statusCode={0}");
+            app.UseStaticFiles();                       
 
             app.UseRouting();
 
