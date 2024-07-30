@@ -5,8 +5,6 @@ using CSVMeterReadingsService.Features.Readings.Commands.CreateReadings;
 using CSVMeterReadingsService.Features.Readings.Commands.UploadFile;
 using CSVMeterReadingsService.Features.Readings.Models;
 using MediatR;
-using System.Linq;
-using CSVMeterReadings.Models;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
@@ -24,7 +22,7 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
         public override async Task BuildViewModelAsync()
         {
-            FileUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
+            CSVUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
 
            // await Task.WhenAll(fileUpload.MeterReadings.Select(r => ProcessMeterReadingDtoAsync(r)));
 
@@ -36,7 +34,7 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
            
 
-            _ViewModel.Core = _mapper.Map<FileUploadDto, CSVUploadVM>(fileUpload);
+            _ViewModel.Core = _mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
 
         }
 

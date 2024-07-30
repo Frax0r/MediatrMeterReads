@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CSVMeterReadingsService.Features.Readings.Models
 {
-    public class FileUploadDto : ValidationDto
+    public class CSVUploadDto : ValidationDto
     {
         public IEnumerable<MeterReadingDto> MeterReadings = new List<MeterReadingDto>();
 

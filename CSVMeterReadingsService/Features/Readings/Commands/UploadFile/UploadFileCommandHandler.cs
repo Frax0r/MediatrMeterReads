@@ -10,9 +10,9 @@ using CSVMeterReadingsService.Features.Readings.Models;
 
 namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 {
-    public class UploadFileCommandHandler : IRequestHandler<UploadFileCommand, FileUploadDto>
+    public class UploadFileCommandHandler : IRequestHandler<UploadFileCommand, CSVUploadDto>
     {
-        public async Task<FileUploadDto> Handle(UploadFileCommand request, CancellationToken cancellationToken)
+        public async Task<CSVUploadDto> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
             var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("en-GB"))
             {
@@ -23,7 +23,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
             using var reader = new StreamReader(request.File.OpenReadStream());
             using var csvReader = new CsvReader(reader, csvConfig);
 
-            return new FileUploadDto { MeterReadings = await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList()) };
+            return new CSVUploadDto { MeterReadings = await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList()) };
         }
     }
 }

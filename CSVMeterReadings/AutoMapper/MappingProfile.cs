@@ -9,7 +9,7 @@ namespace CSVMeterReadings.AutoMapper
         internal MappingProfile()
         {
             CreateMap<MeterReadingDto, MeterReadingVM>();
-            CreateMap<FileUploadDto, CSVUploadVM>();
+            CreateMap<CSVUploadDto, CSVUploadVM>();
         }
 
     }
