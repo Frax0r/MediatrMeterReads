@@ -7,7 +7,7 @@ namespace Repository
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {            
-            services.AddScoped(typeof(IRepository<>), typeof(MeterReadingDataRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             return services;
         }
     }

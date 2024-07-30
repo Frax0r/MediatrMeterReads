@@ -33,7 +33,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
 
         private async Task<bool> ValidateAccountId(ulong accountId, CancellationToken cancellationToken)
         {
-            return await _accountRepo.GetByID(accountId, cancellationToken) != null;
+            return await _accountRepo.GetByIDAsync(accountId, cancellationToken) != null;
         }
 
         private bool ValidateReadingFormat(string readingValue)
@@ -43,8 +43,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
 
         private async Task<bool> ValidateMeterReading(MeterReadingDto meterReading, CancellationToken cancellationToken)
         {
-            return await _meterReadingRepo.Find(new object[]
-                 { meterReading.AccountId, meterReading.MeterReadingDateTime }, cancellationToken) == null;
+            return await _meterReadingRepo.Find([meterReading.AccountId, meterReading.MeterReadingDateTime], cancellationToken) == null;
         }
     }
 }

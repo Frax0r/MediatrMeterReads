@@ -12,7 +12,7 @@ namespace CSVMeterReadingsService.Services
     {
         public async static Task SeedAccountsAsync(IConfiguration configuration, CancellationToken cancellationToken)
         {
-            var repo = new MeterReadingDataRepository<Account>(configuration);
+            var repo = new Repository<Account>(configuration);
             await InitialiseDb.SeedAsync(repo, cancellationToken);
         }
 

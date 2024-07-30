@@ -1,12 +1,11 @@
-﻿using CSVMeterReadings.Models.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSVMeterReadings.Models
 {
     // Pocos, with ef tags for code first db creation etc
-    public class Account : IIdentity
+    public class Account
     {
         [Column("AccountId", TypeName = "bigint"), Key]
         public ulong AccountId { get; set; }

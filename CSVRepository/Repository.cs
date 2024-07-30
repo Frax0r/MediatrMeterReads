@@ -1,5 +1,4 @@
-﻿using CSVMeterReadings.Models.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
@@ -10,12 +9,12 @@ using Repository.DbContext;
 
 namespace Repository
 {
-    public class MeterReadingDataRepository<T> : IRepository<T> where T : class, IIdentity
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
         private DbSet<T> _entities;
 
-        public MeterReadingDataRepository(IConfiguration configuration) 
+        public Repository(IConfiguration configuration) 
         {
             _context = new ApplicationDbContext(configuration.GetConnectionString("default"));
             _entities = _context.Set<T>();
@@ -23,10 +22,9 @@ namespace Repository
 
         public IEnumerable<T> GetAll() => _entities.AsEnumerable();
 
-        public async Task<T> GetByID(ulong id, CancellationToken cancellationToken) => 
-                              await _entities.SingleOrDefaultAsync(t => t.AccountId == id, cancellationToken);
+        public async Task<T> GetByIDAsync(ulong id, CancellationToken cancellationToken) => await _entities.FindAsync([id], cancellationToken);
 
-        public async ValueTask<T> Find(object[] keys, CancellationToken cancellationToken) => await _entities.FindAsync(keys, cancellationToken);
+        public async Task<T> Find(object[] keys, CancellationToken cancellationToken) => await _entities.FindAsync(keys, cancellationToken);
 
         public async Task<bool> Insert(T entity)
         {
