@@ -5,10 +5,12 @@ using CSVMeterReadingsService.Features.Readings.Commands.CreateReadings;
 using CSVMeterReadingsService.Features.Readings.Commands.UploadFile;
 using CSVMeterReadingsService.Features.Readings.Models;
 using MediatR;
+using System.Linq;
+using CSVMeterReadings.Models;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
-    internal class CSVUploadVMBuilder : ViewModelBuilder<CSVUploadVM, IFormFile>
+    internal class CSVUploadVMBuilder : ViewModelBuilderBase<CSVUploadVM, IFormFile>
     {
         private readonly Mediator _mediator;
         private readonly IMapper _mapper;
@@ -20,9 +22,11 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
             _mapper = mapper;
         }
 
-        public override async Task BuildViewModel()
+        public override async Task BuildViewModelAsync()
         {
             FileUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
+
+           // await Task.WhenAll(fileUpload.MeterReadings.Select(r => ProcessMeterReadingDtoAsync(r)));
 
             foreach (MeterReadingDto meterReading in fileUpload.MeterReadings) 
             {
@@ -30,8 +34,16 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
                 meterReading.ValidationResult = reading.ValidationResult;
             }
 
+           
+
             _ViewModel.Core = _mapper.Map<FileUploadDto, CSVUploadVM>(fileUpload);
 
         }
+
+       /* private async Task ProcessMeterReadingDtoAsync(MeterReadingDto meterReadingDto)
+        {
+            MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReadingDto }).ConfigureAwait(false);
+            meterReadingDto.ValidationResult = reading.ValidationResult;
+        } */
     }
 }

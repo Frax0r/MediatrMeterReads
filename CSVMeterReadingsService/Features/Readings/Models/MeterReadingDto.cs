@@ -15,9 +15,9 @@ namespace CSVMeterReadingsService.Features.Readings.Models
         {
             get
             {
-                return ValidationResult.IsValid 
-                       ? "Uploaded successfully" 
-                       : String.Join(", ", ValidationResult.Errors.Select(e => e.ErrorMessage));
+                return ValidationResult.IsValid
+                       ? "Uploaded successfully"
+                       : ValidationResult.ToString(", ");                    
             }
 
         }

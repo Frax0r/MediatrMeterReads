@@ -5,11 +5,11 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
     internal interface IViewModelBuilder<TViewModel, TInput> where TViewModel : class, new()
     {
         internal void SetInputObject(TInput input);
-        internal abstract Task BuildViewModel();
+        internal abstract Task BuildViewModelAsync();
         internal ViewModel<TViewModel> ViewModel();
     }
 
-    internal abstract class ViewModelBuilder<TViewModel, TInput> : IViewModelBuilder<TViewModel, TInput> where TViewModel : class, new()
+    internal abstract class ViewModelBuilderBase<TViewModel, TInput> : IViewModelBuilder<TViewModel, TInput> where TViewModel : class, new()
     {
         protected ViewModel<TViewModel> _ViewModel;
 
@@ -17,7 +17,7 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
         public void SetInputObject(TInput input) => _InputObject = input;
 
-        public abstract Task BuildViewModel();
+        public abstract Task BuildViewModelAsync();
 
         public virtual ViewModel<TViewModel> ViewModel() => _ViewModel;
 

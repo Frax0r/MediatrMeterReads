@@ -24,7 +24,7 @@ namespace CSVMeterReadings.Controllers
         [DisableRequestSizeLimit]
         public async Task<ActionResult> MeterReadingUploads(IFormFile file)
         {
-            ViewModel<CSVUploadVM> vm = await _mediator.Send(new GetUploadedCSVViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
+            ViewModel<CSVUploadVM> vm = await _mediator.Send(new RequestUploadedCSVViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
            
             AddErrorsToModelState(vm.Core.ValidationResult);
 

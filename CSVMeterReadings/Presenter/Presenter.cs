@@ -23,7 +23,7 @@ namespace CSVMeterReadings.Presenter
         {
             _vmBuilder.SetInputObject(inputObject);
 
-            await _vmBuilder.BuildViewModel();
+            await _vmBuilder.BuildViewModelAsync();
 
             return _vmBuilder.ViewModel();
 
