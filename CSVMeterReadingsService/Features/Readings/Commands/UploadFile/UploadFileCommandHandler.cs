@@ -14,7 +14,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 {
     public class UploadFileCommandHandler : IRequestHandler<UploadFileCommand, CSVUploadDto>
     {
-        private readonly List<MeterReadingDto> csvErrorList = [];
+        private readonly List<MeterReadingDto> _csvErrorList = [];
 
         public async Task<CSVUploadDto> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
@@ -22,7 +22,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
             {
                  HasHeaderRecord = true,
                  IgnoreBlankLines = true,
-                 ReadingExceptionOccurred = x => { AddCsvReadError(csvErrorList, x); return false; }
+                 ReadingExceptionOccurred = x => { AddCsvReadError(_csvErrorList, x); return false; }
             };
 
             using var reader = new StreamReader(request.File.OpenReadStream());
@@ -30,7 +30,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 
             var meterReadings = await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList());
 
-            return new CSVUploadDto { MeterReadings = meterReadings, InvalidCSVMeterReadings = csvErrorList };
+            return new CSVUploadDto { MeterReadings = meterReadings, InvalidCSVMeterReadings = _csvErrorList };
         }
 
         private static void AddCsvReadError(List<MeterReadingDto> csvErrorList, ReadingExceptionOccurredArgs ex)

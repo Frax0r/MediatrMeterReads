@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CSVMeterReadings.ViewModel;
 using MediatR;
 using CSVMeterReadings.Features.View.Commands.UploadCSV;
+using CSVMeterReadings.Features.View.Commands.UnitOfWork;
 
 namespace CSVMeterReadings.Controllers
 {
@@ -27,6 +28,8 @@ namespace CSVMeterReadings.Controllers
             ViewModel<CSVUploadVM> vm = await _mediator.Send(new RequestUploadedCSVViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
            
             AddErrorsToModelState(vm.Model.ValidationResult);
+
+            await _mediator.Send(new UnitOfWorkCommand()).ConfigureAwait(false);
 
             return View("Index", vm);
 

@@ -10,6 +10,5 @@ namespace Repository.Interfaces
         Task<T> GetByIDAsync(ulong id, CancellationToken cancellationToken);
         Task<T> FindAsync(object[] keys, CancellationToken cancellationToken);
         Task InsertAsync(T entity);
-        Task<bool> InsertListAsync(IEnumerable<T> entities);
     }
 }

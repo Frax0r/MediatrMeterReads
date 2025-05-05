@@ -31,14 +31,7 @@ namespace Repository
             if(entity == null) return;
 
             await _entities.AddAsync(entity);
-           
-            await _context.SaveChangesAsync();
-        }
 
-        public async Task<bool> InsertListAsync(IEnumerable<T> entities) 
-        {
-            _context.AddRange(entities);
-            return await _context.SaveChangesAsync() > 0 ? true : false;
         }
 
     }
