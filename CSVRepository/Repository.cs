@@ -26,24 +26,19 @@ namespace Repository
 
         public async Task<T> FindAsync(object[] keys, CancellationToken cancellationToken) => await _entities.FindAsync(keys, cancellationToken);
 
-        public async Task<bool> InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
-            if(entity == null) return false;
+            if(entity == null) return;
 
             await _entities.AddAsync(entity);
            
-            return await _context.SaveChangesAsync() > 0 ? true : false;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> InsertListAsync(IEnumerable<T> entities) 
         {
             _context.AddRange(entities);
             return await _context.SaveChangesAsync() > 0 ? true : false;
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
         }
 
     }

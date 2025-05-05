@@ -26,7 +26,7 @@ namespace CSVMeterReadings.Controllers
         {
             ViewModel<CSVUploadVM> vm = await _mediator.Send(new RequestUploadedCSVViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
            
-            AddErrorsToModelState(vm.Core.ValidationResult);
+            AddErrorsToModelState(vm.Model.ValidationResult);
 
             return View("Index", vm);
 

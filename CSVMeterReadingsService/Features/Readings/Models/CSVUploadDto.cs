@@ -5,7 +5,9 @@ namespace CSVMeterReadingsService.Features.Readings.Models
 {
     public class CSVUploadDto : ValidationDto
     {
-        public IEnumerable<MeterReadingDto> MeterReadings = new List<MeterReadingDto>();
+        public IEnumerable<MeterReadingDto> MeterReadings = [];
+
+        public IEnumerable<MeterReadingDto> InvalidCSVMeterReadings = [];
 
         public uint SavedCount => (uint)MeterReadings.Count(x => x.ValidationResult.IsValid);
 

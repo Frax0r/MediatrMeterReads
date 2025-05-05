@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        @if (Model?.Core?.MeterReadings?.Count() > 0)
+        @if (Model?.Model?.MeterReadings?.Count() > 0)
         {
             <div class="modal fade" id="DynamicModal" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog autoWidth modal-dialog-scrollable" id="modalDialog">
@@ -57,8 +57,8 @@
                         </div>
                         <div class="modal-body">
                             <p id="modalMessage">
-                                Number Of Records Uploaded: @Model.Core.SavedCount <br />
-                                Number Of Records Not Uploaded:  @Model.Core.NotSavedCount  <br />
+                                Number Of Records Uploaded: @Model.Model.SavedCount <br />
+                                Number Of Records Not Uploaded:  @Model.Model.NotSavedCount  <br />
                                 The below table shows the upload results:
                                 <div class="table-responsive">
                                     <div class="tableContainment" id="dtDynamicTableContainment">
@@ -83,7 +83,7 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach (var item in Model.Core.MeterReadings)
+                                                @foreach (var item in Model.Model.MeterReadings)
                                                 {
                                                     <tr>
                                                         <td>

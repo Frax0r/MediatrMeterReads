@@ -16,7 +16,16 @@ namespace Repository.DbContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Default"));           
+            bool.TryParse(_configuration["UseInMemoryDB"], out var useInMemory);
+
+            if (useInMemory) 
+            {
+                optionsBuilder.UseInMemoryDatabase("testDB");
+            }
+            else 
+            {
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Default"));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

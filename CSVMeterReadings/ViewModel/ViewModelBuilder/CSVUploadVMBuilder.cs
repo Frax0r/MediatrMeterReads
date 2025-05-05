@@ -5,6 +5,7 @@ using CSVMeterReadingsService.Features.Readings.Commands.CreateReadings;
 using CSVMeterReadingsService.Features.Readings.Commands.UploadFile;
 using CSVMeterReadingsService.Features.Readings.Models;
 using MediatR;
+using System.Linq;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
@@ -26,11 +27,13 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
             foreach (MeterReadingDto meterReading in fileUpload.MeterReadings) 
             {
-                MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false);
-                meterReading.ValidationResult = reading.ValidationResult;
-            }           
+                    MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false);
+                    meterReading.ValidationResult = reading.ValidationResult;
+            }
 
-            _ViewModel.Core = _mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
+            fileUpload.MeterReadings = fileUpload.MeterReadings.Concat(fileUpload.InvalidCSVMeterReadings);
+
+            _ViewModel.Model = _mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
 
         }
     }

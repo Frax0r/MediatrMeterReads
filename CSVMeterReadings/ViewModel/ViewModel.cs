@@ -2,6 +2,6 @@
 {
     public class ViewModel<TViewModel> where TViewModel : class, new()
     {
-        public TViewModel Core;
+        public TViewModel Model;
     }
 }
