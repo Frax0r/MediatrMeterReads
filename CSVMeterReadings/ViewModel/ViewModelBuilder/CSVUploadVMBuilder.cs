@@ -17,13 +17,10 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
         {
             CSVUploadDto fileUpload = await _mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
 
-            foreach (MeterReadingDto meterReading in fileUpload.MeterReadings) 
+            foreach (MeterReadingDto meterReading in fileUpload.MeterReadings.Where(mr => mr.ValidationResult.IsValid))
             {
-                    MeterReadingDto reading = await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false);
-                    meterReading.ValidationResult = reading.ValidationResult;
+                    meterReading.ValidationResult = (await _mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false)).ValidationResult;
             }
-
-            fileUpload.MeterReadings = fileUpload.MeterReadings.Concat(fileUpload.InvalidCSVMeterReadings);
 
             _ViewModel.Model = mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
 

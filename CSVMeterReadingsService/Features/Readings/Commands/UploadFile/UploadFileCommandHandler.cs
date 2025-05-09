@@ -28,9 +28,9 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
             using var reader = new StreamReader(request.File.OpenReadStream());
             using var csvReader = new CsvReader(reader, csvConfig);
 
-            var meterReadings = await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList());
+            var meterReadings = (await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList())).Concat(_csvErrorList);
 
-            return new CSVUploadDto { MeterReadings = meterReadings, InvalidCSVMeterReadings = _csvErrorList };
+            return new CSVUploadDto { MeterReadings = meterReadings };
         }
 
         private static void AddCsvReadError(List<MeterReadingDto> csvErrorList, ReadingExceptionOccurredArgs ex)
