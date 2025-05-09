@@ -13,10 +13,10 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
         private readonly IRepository<MeterReading> _meterReadingRepo;
         private readonly IRepository<Account> _accountRepo;
 
-        public CreateReadingsCommandValidator(IRepository<MeterReading> meterReadingRepo, IRepository<Account> accountReadingRepo)
+        public CreateReadingsCommandValidator(IRepository<MeterReading> meterReadingRepo, IRepository<Account> accountRepo)
         {
             _meterReadingRepo = meterReadingRepo;
-            _accountRepo = accountReadingRepo;
+            _accountRepo = accountRepo;
 
             RuleFor(e => e.MeterReading.AccountId)
                 .MustAsync(ValidateAccountIdAsync)

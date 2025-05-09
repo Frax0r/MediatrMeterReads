@@ -7,16 +7,9 @@ using Repository.DbContext;
 
 namespace Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T>(ApplicationDbContext context) : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<T> _entities;
-
-        public Repository(ApplicationDbContext context)
-        {            
-               _context = context;
-               _entities = _context.Set<T>();
-        }
+        private readonly DbSet<T> _entities = context.Set<T>();
 
         public IEnumerable<T> GetAll() => _entities.AsQueryable();
 

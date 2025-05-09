@@ -12,7 +12,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
 {
     public class CreateReadingsCommandHandler(IRepository<MeterReading> repo, IMapper mapper) : IRequestHandler<CreateReadingsCommand, MeterReadingDto>
     {
-        private readonly ValidationFailure _failedSave = new ValidationFailure("Meter Read", "Did not save");
+        private readonly static ValidationFailure _failedSave = new("Meter Read", "Did not save");
 
         public async Task<MeterReadingDto> Handle(CreateReadingsCommand request, CancellationToken cancellationToken)
         {
