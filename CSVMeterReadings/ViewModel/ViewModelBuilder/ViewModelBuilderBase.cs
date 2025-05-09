@@ -11,7 +11,7 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
     internal abstract class ViewModelBuilderBase<TViewModel, TInput> : IViewModelBuilder<TViewModel, TInput> where TViewModel : class, new()
     {
-        protected ViewModel<TViewModel> _ViewModel;
+        protected ViewModel<TViewModel> _ViewModel = new();
 
         protected TInput _InputObject;
 

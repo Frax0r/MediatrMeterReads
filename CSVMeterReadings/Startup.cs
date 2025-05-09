@@ -7,25 +7,17 @@ using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
 using CSVMeterReadings;
-using Microsoft.Extensions.Configuration;
 using Repository.DbContext;
 
 namespace ProtoType.Web
 {
     public class Startup
     {
-        private IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure(Configuration);            
+            services.AddInfrastructure();
             services.AddApplication();
-            services.AddUIServices();           
+            services.AddUIServices();
 
             IMapper mapper = new MapperConfiguration(mc =>
             {
@@ -36,7 +28,7 @@ namespace ProtoType.Web
             services.AddSingleton(mapper);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, ApplicationDbContext context)
         {
             app.UseExceptionHandler("/error");
 
@@ -46,18 +38,17 @@ namespace ProtoType.Web
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();                       
+            app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {              
+            {
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=CSVUpload}/{action=Index}/{id?}",
                 defaults: new { controller = "CSVUpload", action = "Index" });
-            }
-            );
+            });
 
             context.Database.EnsureCreated();
         }

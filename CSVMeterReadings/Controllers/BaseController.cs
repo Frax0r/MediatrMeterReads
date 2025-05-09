@@ -4,10 +4,9 @@ using MediatR;
 
 namespace CSVMeterReadings.Controllers
 {
-    public abstract class BaseController : Controller
+    public abstract class BaseController(IMediator mediator) : Controller
     {
-        protected Mediator _mediator;
-
+        protected Mediator _mediator { get; } = (Mediator)mediator;
         protected void AddErrorsToModelState(ValidationResult result)
         {
             ModelState.Clear();

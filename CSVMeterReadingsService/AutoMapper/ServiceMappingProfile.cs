@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CSVMeterReadings.Models;
+using CSVMeterReadingsModels;
 using CSVMeterReadingsService.Features.Readings.Models;
 
 namespace CSVMeterReadingsService.AutoMapper

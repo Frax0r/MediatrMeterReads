@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using CSVMeterReadings.Models;
+using CSVMeterReadingsModels;
 using CSVMeterReadingsService.Features.Readings.Models;
 using Repository.Interfaces;
 

@@ -1,22 +1,15 @@
-﻿using CSVMeterReadings.Models;
+﻿using CSVMeterReadingsModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Repository.DbContext
 {
     public interface IApplicationDbContext { }
-    public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext, IApplicationDbContext
+    public class ApplicationDbContext(IConfiguration configuration) : Microsoft.EntityFrameworkCore.DbContext, IApplicationDbContext
     {
-        private readonly IConfiguration _configuration;
-
-        public ApplicationDbContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            bool.TryParse(_configuration["UseInMemoryDB"], out var useInMemory);
+            bool.TryParse(configuration["UseInMemoryDB"], out var useInMemory);
 
             if (useInMemory) 
             {
@@ -24,7 +17,7 @@ namespace Repository.DbContext
             }
             else 
             {
-                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Default"));
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("Default"));
             }
         }
 

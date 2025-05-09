@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CSVMeterReadings.Models
+namespace CSVMeterReadingsModels
 {
     // Pocos, with ef tags for code first db creation etc
     public class MeterReading
@@ -13,11 +13,11 @@ namespace CSVMeterReadings.Models
         [Column("MeterReadValue", TypeName = "int")]
         public uint MeterReadValue { get; set; }
 
-        public MeterReading(ulong accountId, DateTime meterReadingDateTime, uint meterReadValue) 
+        public MeterReading(ulong accountId, DateTime meterReadingDateTime, uint meterReadValue)
         {
-            this.AccountId = accountId;
-            this.MeterReadingDateTime = meterReadingDateTime;
-            this.MeterReadValue = meterReadValue;
+            AccountId = accountId;
+            MeterReadingDateTime = meterReadingDateTime;
+            MeterReadValue = meterReadValue;
         }
     }
 }

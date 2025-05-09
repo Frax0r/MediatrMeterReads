@@ -15,4 +15,3 @@
     $('#DynamicModal').modal('show');
   
 });
-

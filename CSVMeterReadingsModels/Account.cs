@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CSVMeterReadings.Models
+namespace CSVMeterReadingsModels
 {
     // Pocos, with ef tags for code first db creation etc
     public class Account
@@ -21,9 +21,9 @@ namespace CSVMeterReadings.Models
 
         public Account(ulong AccountId, string FirstName, string LastName)
         {
-          this.AccountId = AccountId;
-          this.FirstName = FirstName;
-          this.LastName = LastName;
-        } 
+            this.AccountId = AccountId;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+        }
     }
 }

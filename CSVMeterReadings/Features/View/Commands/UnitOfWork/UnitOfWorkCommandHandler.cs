@@ -1,24 +1,16 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using CSVMeterReadings.Features.View.Commands.UnitOfWork;
 using MediatR;
 using Repository.Interfaces;
 
-namespace CSVMeterReadings.Features.View.Commands.UploadCSV
+namespace CSVMeterReadings.Features.View.Commands.UnitOfWork
 {
-    public class UnitOfWorkCommandHandler : IRequestHandler<UnitOfWorkCommand>
+    public class UnitOfWorkCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<UnitOfWorkCommand>
     {
-        private IUnitOfWork _unitOfWork;
-
-        public UnitOfWorkCommandHandler(IUnitOfWork unitOfWork)
+        public async Task Handle(UnitOfWorkCommand request, CancellationToken cancellationToken)
         {
-            _unitOfWork = unitOfWork;
-        }
-
-        public async Task<Unit> Handle(UnitOfWorkCommand request, CancellationToken cancellationToken)
-        {
-            await _unitOfWork.SaveChangesAsync();
-            return new Unit();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+            return;
         }
 
     }

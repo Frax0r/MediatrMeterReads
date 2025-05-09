@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Repository.DbContext;
@@ -12,7 +10,7 @@ namespace Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
-        private DbSet<T> _entities;
+        private readonly DbSet<T> _entities;
 
         public Repository(ApplicationDbContext context)
         {            
@@ -20,7 +18,7 @@ namespace Repository
                _entities = _context.Set<T>();
         }
 
-        public IEnumerable<T> GetAll() => _entities.AsEnumerable();
+        public IEnumerable<T> GetAll() => _entities.AsQueryable();
 
         public async Task<T> GetByIDAsync(ulong id, CancellationToken cancellationToken) => await _entities.FindAsync([id], cancellationToken);
 

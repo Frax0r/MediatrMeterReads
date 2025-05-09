@@ -9,17 +9,9 @@ using System.Linq;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
-    internal class CSVUploadVMBuilder : ViewModelBuilderBase<CSVUploadVM, IFormFile>
+    internal class CSVUploadVMBuilder(IMediator mediator, IMapper mapper) : ViewModelBuilderBase<CSVUploadVM, IFormFile>
     {
-        private readonly Mediator _mediator;
-        private readonly IMapper _mapper;
-
-        public CSVUploadVMBuilder(IMediator mediator, IMapper mapper)
-        {
-            _ViewModel = new ViewModel<CSVUploadVM>();
-            _mediator = (Mediator)mediator;
-            _mapper = mapper;
-        }
+        private readonly Mediator _mediator = (Mediator)mediator;
 
         public override async Task BuildViewModelAsync()
         {
@@ -33,7 +25,7 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 
             fileUpload.MeterReadings = fileUpload.MeterReadings.Concat(fileUpload.InvalidCSVMeterReadings);
 
-            _ViewModel.Model = _mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
+            _ViewModel.Model = mapper.Map<CSVUploadDto, CSVUploadVM>(fileUpload);
 
         }
     }

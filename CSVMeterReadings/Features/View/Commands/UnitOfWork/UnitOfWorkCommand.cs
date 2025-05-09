@@ -2,8 +2,5 @@
 
 namespace CSVMeterReadings.Features.View.Commands.UnitOfWork
 {
-    public class UnitOfWorkCommand : IRequest<Unit>
-    {
-       
-    }
+    public class UnitOfWorkCommand : IRequest{}
 }

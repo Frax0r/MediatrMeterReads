@@ -10,22 +10,15 @@ namespace CSVMeterReadings.Presenter
 
     }
 
-    internal class Presenter<TViewModel, TInput> : IPresenter<TViewModel, TInput> where TViewModel : class, new()
+    internal class Presenter<TViewModel, TInput>(IViewModelBuilder<TViewModel, TInput> vmBuilder) : IPresenter<TViewModel, TInput> where TViewModel : class, new()
     {
-        private readonly IViewModelBuilder<TViewModel, TInput> _vmBuilder;
-
-        public Presenter(IViewModelBuilder<TViewModel, TInput> vmBuilder)
-        {
-            _vmBuilder = vmBuilder;
-        }
-
         public async Task<ViewModel<TViewModel>> GetViewModelAsync(TInput inputObject)
         {
-            _vmBuilder.SetInputObject(inputObject);
+            vmBuilder.SetInputObject(inputObject);
 
-            await _vmBuilder.BuildViewModelAsync();
+            await vmBuilder.BuildViewModelAsync();
 
-            return _vmBuilder.ViewModel();
+            return vmBuilder.ViewModel();
 
         }
 
