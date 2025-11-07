@@ -6,27 +6,27 @@ using CSVMeterReadingsModels;
 using CSVMeterReadingsService.Features.Readings.Models;
 using Repository.Interfaces;
 
-namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
+namespace CSVMeterReadingsService.Features.Readings.Commands.UploadReadings
 {
-    public partial class CreateReadingsCommandValidator : AbstractValidator<CreateReadingsCommand>
+    public partial class UploadMeterReadingCommandValidator : AbstractValidator<UploadMeterReadingCommand>
     {
         private readonly IRepository<MeterReading> _meterReadingRepo;
         private readonly IRepository<Account> _accountRepo;
 
-        public CreateReadingsCommandValidator(IRepository<MeterReading> meterReadingRepo, IRepository<Account> accountRepo)
+        public UploadMeterReadingCommandValidator(IRepository<MeterReading> meterReadingRepo, IRepository<Account> accountRepo)
         {
             _meterReadingRepo = meterReadingRepo;
             _accountRepo = accountRepo;
 
-            RuleFor(e => e.MeterReading.AccountId)
+            RuleFor(e => e.MeterReadingDto.AccountId)
                 .MustAsync(ValidateAccountIdAsync)
                 .WithMessage("Account does not exist for meter reading");
 
-            RuleFor(e => e.MeterReading.MeterReadValue)
+            RuleFor(e => e.MeterReadingDto.MeterReadValue)
                 .Must(ValidateReadingFormat)
                 .WithMessage("Meter reading format invalid");
 
-            RuleFor(e => e.MeterReading)
+            RuleFor(e => e.MeterReadingDto)
                 .MustAsync(ValidateMeterReadingAsync)
                 .WithMessage("Meter reading already exists");
         }

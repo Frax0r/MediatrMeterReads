@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-using CSVMeterReadingsService.Features.Readings.Commands.CreateReadings;
+using CSVMeterReadingsService.Features.Readings.Commands.ParseMeterReadings;
 using CSVMeterReadingsService.Features.Readings.Commands.UploadFile;
+using CSVMeterReadingsService.Features.Readings.Commands.UploadReadings;
 using CSVMeterReadingsService.Features.Readings.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CSVMeterReadings.ViewModel.ViewModelBuilder
 {
@@ -13,14 +14,22 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
     {
         public override async Task BuildViewModelAsync()
         {
-            var csvUploadResult = await mediator.Send(new UploadFileCommand { File = _InputObject }).ConfigureAwait(false);
+            var csvUploadDto = await mediator.Send(new UploadFileCommand(_InputObject)).ConfigureAwait(false);
 
-            foreach (MeterReadingDto meterReading in csvUploadResult.MeterReadings.Where(mr => mr.ValidationResult.IsValid))
+            if (csvUploadDto.ValidationResult.IsValid)
             {
-                    meterReading.ValidationResult = (await mediator.Send(new CreateReadingsCommand { MeterReading = meterReading }).ConfigureAwait(false)).ValidationResult;
+                var meterReadings = await mediator.Send(new ParseCsvMeterReadingsCommand(_InputObject));
+
+                foreach (var meterReading in meterReadings.Where(mr => mr.ValidationResult.IsValid))
+                {
+                    meterReading.ValidationResult = (await mediator.Send(new UploadMeterReadingCommand(meterReading)).ConfigureAwait(false)).ValidationResult;
+                }
+
+                csvUploadDto.MeterReadings = meterReadings;
+
             }
 
-            _ViewModel.Model = mapper.Map<CSVUploadDto, CSVUploadVM>(csvUploadResult);
+            _ViewModel.Model = mapper.Map<CSVUploadDto, CSVUploadVM>(csvUploadDto);
 
         }
     }

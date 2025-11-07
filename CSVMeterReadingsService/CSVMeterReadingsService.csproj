@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\Readings\Commands\CreateReadings\**" />
-    <EmbeddedResource Remove="Features\Readings\Commands\CreateReadings\**" />
-    <None Remove="Features\Readings\Commands\CreateReadings\**" />
+    <Compile Remove="Features\Readings\Commands\UploadReadings\**" />
+    <EmbeddedResource Remove="Features\Readings\Commands\UploadReadings\**" />
+    <None Remove="Features\Readings\Commands\UploadReadings\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Features\Readings\Commands\CreateReadings\CreateReadingsCommand.cs" />
-    <Compile Include="Features\Readings\Commands\CreateReadings\CreateReadingsCommandHandler.cs" />
-    <Compile Include="Features\Readings\Commands\CreateReadings\CreateReadingsCommandValidator.cs" />
+    <Compile Include="Features\Readings\Commands\UploadReadings\UploadMeterReadingCommandHandler.cs" />
+    <Compile Include="Features\Readings\Commands\UploadReadings\UploadMeterReadingCommandValidator.cs" />
+    <Compile Include="Features\Readings\Commands\UploadReadings\UploadMeterReadingCommand.cs" />
   </ItemGroup>
 
   <ItemGroup>

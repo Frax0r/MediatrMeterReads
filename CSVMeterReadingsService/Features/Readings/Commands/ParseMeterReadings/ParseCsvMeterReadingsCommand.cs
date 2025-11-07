@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace CSVMeterReadingsService.Features.Readings.Commands.ParseMeterReadings
 {
-    public class ParseCsvMeterReadingsCommand(IFormFile File) : IRequest<IEnumerable<MeterReadingDto>>
+    public class ParseCsvMeterReadingsCommand(IFormFile file) : IRequest<IEnumerable<MeterReadingDto>>
     {
-        public IFormFile File { get; set; } = File;
+        public IFormFile File { get; set; } = file;
     }
 }
