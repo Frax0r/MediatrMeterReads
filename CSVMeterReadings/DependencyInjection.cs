@@ -1,13 +1,13 @@
-﻿using CSVMeterReadings.Presenter;
-using CSVMeterReadings.ViewModel;
-using CSVMeterReadings.ViewModel.ViewModelBuilder;
+﻿using CSVMeterReadingsAPI.Presenter;
+using CSVMeterReadingsAPI.ViewModel.ViewModelBuilder;
+using CSVMeterReadingsAPI.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
-namespace CSVMeterReadings
+namespace CSVMeterReadingsAPI
 {
     public static class DependencyInjection
     {
@@ -22,7 +22,7 @@ namespace CSVMeterReadings
             services.AddMediatR(cfg => {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
-            services.AddScoped<IViewModelBuilder<CSVUploadVM, IFormFile>, CSVUploadVMBuilder>();
+            services.AddScoped<IViewModelBuilder<CsvUploadVM, IFormFile>, CSVUploadVMBuilder>();
             services.AddScoped(typeof(IPresenter<, >), typeof(Presenter<, >));
             services.AddControllersWithViews(options =>
             {

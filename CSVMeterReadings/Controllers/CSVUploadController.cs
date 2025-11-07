@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using MediatR;
-using CSVMeterReadings.Features.View.Commands.UploadCSV;
-using CSVMeterReadings.Features.View.Commands.UnitOfWork;
+using CSVMeterReadingsAPI.Features.View.Commands.UploadCSV;
+using CSVMeterReadingsAPI.Features.View.Commands.UnitOfWork;
 
-namespace CSVMeterReadings.Controllers
+namespace CSVMeterReadingsAPI.Controllers
 {
     public class CSVUploadController(IMediator mediator) : BaseController()
     {
@@ -19,7 +19,7 @@ namespace CSVMeterReadings.Controllers
         [DisableRequestSizeLimit]
         public async Task<ActionResult> MeterReadingUploads(IFormFile file)
         {
-            var vm = await mediator.Send(new RequestUploadedCSVViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
+            var vm = await mediator.Send(new RequestCsvViewModelCommand { UploadedFile = file } ).ConfigureAwait(false);
 
             AddErrorsToModelState(vm.Model.ValidationResult);
 

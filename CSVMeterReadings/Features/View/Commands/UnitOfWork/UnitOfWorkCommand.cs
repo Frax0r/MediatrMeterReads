@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace CSVMeterReadings.Features.View.Commands.UnitOfWork
+namespace CSVMeterReadingsAPI.Features.View.Commands.UnitOfWork
 {
     public class UnitOfWorkCommand : IRequest{}
 }

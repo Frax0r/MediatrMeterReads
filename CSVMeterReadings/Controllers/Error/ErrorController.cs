@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CSVMeterReadings.Controllers.Error
+namespace CSVMeterReadingsAPI.Controllers.Error
 {
     public class ErrorController : Controller
     {

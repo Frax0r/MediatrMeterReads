@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using CSVMeterReadings.ViewModel;
+using CSVMeterReadingsAPI.ViewModel;
 using CSVMeterReadingsService.Features.Readings.Models;
 
-namespace CSVMeterReadings.AutoMapper
+namespace CSVMeterReadingsAPI.AutoMapper
 {
     internal class MappingProfile : Profile
     {
         internal MappingProfile()
         {
             CreateMap<MeterReadingDto, MeterReadingVM>();
-            CreateMap<CSVUploadDto, CSVUploadVM>();
+            CreateMap<CSVUploadDto, CsvUploadVM>();
+            CreateMap<ValidationDto, ValidationDtoVM>();
         }
 
     }

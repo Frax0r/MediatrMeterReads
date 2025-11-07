@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using CSVMeterReadingsService.Features.Readings.Models;
 
-namespace CSVMeterReadings.ViewModel
+namespace CSVMeterReadingsAPI.ViewModel
 {
-    public class CSVUploadVM : ValidationDto
+    public class CsvUploadVM : ValidationDtoVM
     {
         public IEnumerable<MeterReadingVM> MeterReadings { get; set; }
 

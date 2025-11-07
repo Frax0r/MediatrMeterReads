@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSVMeterReadings.ViewModel.ViewModelBuilder
+namespace CSVMeterReadingsAPI.ViewModel.ViewModelBuilder
 {
-    internal class CSVUploadVMBuilder(IMediator mediator, IMapper mapper) : ViewModelBuilderBase<CSVUploadVM, IFormFile>
+    internal class CSVUploadVMBuilder(IMediator mediator, IMapper mapper) : ViewModelBuilderBase<CsvUploadVM, IFormFile>
     {
         public override async Task BuildViewModelAsync()
         {
@@ -20,16 +20,22 @@ namespace CSVMeterReadings.ViewModel.ViewModelBuilder
             {
                 var meterReadings = await mediator.Send(new ParseCsvMeterReadingsCommand(_InputObject));
 
-                foreach (var meterReading in meterReadings.Where(mr => mr.ValidationResult.IsValid))
+                var parsedReadings = meterReadings.Where(mr => mr.ValidationResult.IsValid).ToList();
+
+                var uploadTasks = parsedReadings
+                    .Select(meterReading => mediator.Send(new UploadMeterReadingCommand(meterReading)));
+
+                var uploadResults = await Task.WhenAll(uploadTasks).ConfigureAwait(false);
+  
+                for (int i = 0; i < parsedReadings.Count; i++)
                 {
-                    meterReading.ValidationResult = (await mediator.Send(new UploadMeterReadingCommand(meterReading)).ConfigureAwait(false)).ValidationResult;
+                    parsedReadings[i].ValidationResult = uploadResults[i].ValidationResult;
                 }
 
                 csvUploadDto.MeterReadings = meterReadings;
-
             }
 
-            _ViewModel.Model = mapper.Map<CSVUploadDto, CSVUploadVM>(csvUploadDto);
+            _ViewModel.Model = mapper.Map<CSVUploadDto, CsvUploadVM>(csvUploadDto);
 
         }
     }

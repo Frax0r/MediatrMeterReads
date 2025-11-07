@@ -1,4 +1,4 @@
-﻿namespace CSVMeterReadings.ViewModel
+﻿namespace CSVMeterReadingsAPI.ViewModel
 {
     public class MeterReadingVM
     {

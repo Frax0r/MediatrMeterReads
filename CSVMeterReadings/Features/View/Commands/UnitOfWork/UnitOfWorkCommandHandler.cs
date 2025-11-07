@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Repository.Interfaces;
 
-namespace CSVMeterReadings.Features.View.Commands.UnitOfWork
+namespace CSVMeterReadingsAPI.Features.View.Commands.UnitOfWork
 {
     public class UnitOfWorkCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<UnitOfWorkCommand>
     {

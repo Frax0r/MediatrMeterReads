@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FluentValidation.Results;
 
-namespace CSVMeterReadings.Controllers
+namespace CSVMeterReadingsAPI.Controllers
 {
     public abstract class BaseController() : Controller
     {

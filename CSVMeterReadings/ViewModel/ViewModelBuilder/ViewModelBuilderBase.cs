@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CSVMeterReadings.ViewModel.ViewModelBuilder
+namespace CSVMeterReadingsAPI.ViewModel.ViewModelBuilder
 {
     internal interface IViewModelBuilder<TViewModel, TInput> where TViewModel : class, new()
     {

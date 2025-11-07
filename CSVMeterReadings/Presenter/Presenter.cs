@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using CSVMeterReadings.ViewModel;
-using CSVMeterReadings.ViewModel.ViewModelBuilder;
+using CSVMeterReadingsAPI.ViewModel;
+using CSVMeterReadingsAPI.ViewModel.ViewModelBuilder;
 
-namespace CSVMeterReadings.Presenter
+namespace CSVMeterReadingsAPI.Presenter
 {
     public interface IPresenter<TViewModel, TInput> where TViewModel : class, new()
     {
