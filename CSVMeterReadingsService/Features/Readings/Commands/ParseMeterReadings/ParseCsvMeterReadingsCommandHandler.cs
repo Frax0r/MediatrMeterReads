@@ -44,7 +44,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.ParseMeterReadings
                         new ValidationFailure
                         {
                             PropertyName = $"Record: {ex.Exception.Context.Parser.Row}",
-                            ErrorMessage = $"Could not read record for row number: {ex.Exception.Context.Parser.Row}, accountId: {ex.Exception.Context.Parser.Record[0]}"
+                            ErrorMessage = $"Could not parse record for row number: {ex.Exception.Context.Parser.Row}, accountId: {ex.Exception.Context.Parser.Record[0]}"
                         }
                     ]
                 }

@@ -23,7 +23,7 @@ namespace CSVMeterReadingsService.Common.Behaviours
                         v.ValidateAsync(context, cancellationToken)));
 
                 var failures = validationResults
-                    .Where(r => r.Errors.Count != 0)
+                    .Where(r => !r.IsValid)
                     .SelectMany(r => r.Errors)
                     .ToList();
 
