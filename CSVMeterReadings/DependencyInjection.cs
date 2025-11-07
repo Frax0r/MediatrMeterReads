@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using CSVMeterReadings.ViewModel.ViewModelBuilder;
+﻿using CSVMeterReadings.Presenter;
 using CSVMeterReadings.ViewModel;
+using CSVMeterReadings.ViewModel.ViewModelBuilder;
 using Microsoft.AspNetCore.Http;
-using CSVMeterReadings.Presenter;
-using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace CSVMeterReadings
 {
@@ -12,6 +13,12 @@ namespace CSVMeterReadings
     {
         public static IServiceCollection AddUIServices(this IServiceCollection services)
         {
+            services.AddLogging(configure =>
+            {
+                configure.AddConsole();
+                configure.AddDebug();
+            });
+
             services.AddMediatR(cfg => {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });

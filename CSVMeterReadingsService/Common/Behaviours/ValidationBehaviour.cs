@@ -23,11 +23,11 @@ namespace CSVMeterReadingsService.Common.Behaviours
                         v.ValidateAsync(context, cancellationToken)));
 
                 var failures = validationResults
-                    .Where(r => r.Errors.Any())
+                    .Where(r => r.Errors.Count != 0)
                     .SelectMany(r => r.Errors)
                     .ToList();
 
-                if (failures.Any())
+                if (failures.Count != 0)
                 {
                     return new TResponse { ValidationResult = new ValidationResult(failures) };
                 }

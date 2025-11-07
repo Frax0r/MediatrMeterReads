@@ -9,11 +9,11 @@ namespace Repository.DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            bool.TryParse(configuration["UseInMemoryDB"], out var useInMemory);
+            _ = bool.TryParse(configuration["UseInMemoryDB"], out bool useInMemory);
 
             if (useInMemory) 
             {
-                optionsBuilder.UseInMemoryDatabase("testDB");
+                optionsBuilder.UseInMemoryDatabase("TestDB");
             }
             else 
             {

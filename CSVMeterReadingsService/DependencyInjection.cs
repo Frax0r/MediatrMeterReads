@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using CSVMeterReadingsService.Common.Behaviours;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using CSVMeterReadingsService.Common.Behaviours;
-using FluentValidation;
 
 namespace CSVMeterReadingsService
 {

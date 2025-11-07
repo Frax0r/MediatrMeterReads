@@ -4,26 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSVMeterReadingsModels
 {
-    // Pocos, with ef tags for code first db creation etc
-    public class Account
+    public class Account(ulong AccountId, string FirstName, string LastName)
     {
         [Column("AccountId", TypeName = "bigint"), Key]
-        public ulong AccountId { get; set; }
+        public ulong AccountId { get; set; } = AccountId;
 
         [Column("FirstName", TypeName = "varchar(20)"), Required]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = FirstName;
 
         [Column("LastName", TypeName = "varchar(20)"), Required]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = LastName;
 
         [ForeignKey("AccountId")]
         public IEnumerable<MeterReading> MeterReadings { get; set; }
-
-        public Account(ulong AccountId, string FirstName, string LastName)
-        {
-            this.AccountId = AccountId;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-        }
     }
 }

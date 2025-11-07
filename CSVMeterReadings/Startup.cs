@@ -1,15 +1,13 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using CSVMeterReadings.AutoMapper;
 using CSVMeterReadingsService;
 using CSVMeterReadingsService.AutoMapper;
 using Repository;
-using CSVMeterReadings;
 using Repository.DbContext;
 
-namespace ProtoType.Web
+namespace CSVMeterReadings
 {
     public class Startup
     {

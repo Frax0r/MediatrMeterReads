@@ -9,7 +9,11 @@ namespace Repository
     public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork, IDisposable
     {
         public async Task SaveChangesAsync(CancellationToken cancellationToken) => await context.SaveChangesAsync(cancellationToken);
-        public void Dispose() => context.Dispose();
+        public void Dispose()
+        {
+            context.Dispose();
+            GC.SuppressFinalize(this);
+        }
 
     }
 

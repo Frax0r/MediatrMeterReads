@@ -4,6 +4,6 @@ namespace CSVMeterReadingsService.Interfaces
 {
     public interface IValidationResult
     {
-        ValidationResult ValidationResult { get; set; }        
+        ValidationResult ValidationResult { get; set; }
     }
 }

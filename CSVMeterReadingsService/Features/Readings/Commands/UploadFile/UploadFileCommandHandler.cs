@@ -1,57 +1,23 @@
-﻿using CsvHelper;
-using System.Linq;
-using MediatR;
-using System.Globalization;
-using System.IO;
+﻿using MediatR;
+using CSVMeterReadingsService.Features.Readings.Models;
+using CSVMeterReadingsService.Features.Readings.Commands.ParseMeterReadings;
 using System.Threading;
 using System.Threading.Tasks;
-using CsvHelper.Configuration;
-using CSVMeterReadingsService.Features.Readings.Models;
-using FluentValidation.Results;
-using System.Collections.Generic;
 
 namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 {
-    public class UploadFileCommandHandler : IRequestHandler<UploadFileCommand, CSVUploadDto>
+    public class UploadFileCommandHandler(IMediator mediator) : IRequestHandler<UploadFileCommand, CSVUploadDto>
     {
-        private readonly List<MeterReadingDto> _csvErrorList = [];
+        private readonly IMediator _mediator = mediator;
 
         public async Task<CSVUploadDto> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
-            var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("en-GB"))
+            var meterReadings = await _mediator.Send(new ParseCsvMeterReadingsCommand(request.File), cancellationToken);
+
+            return new CSVUploadDto
             {
-                 HasHeaderRecord = true,
-                 IgnoreBlankLines = true,
-                 ReadingExceptionOccurred = x => { AddCsvReadError(_csvErrorList, x); return false; }
+                MeterReadings = meterReadings
             };
-
-            using var reader = new StreamReader(request.File.OpenReadStream());
-            using var csvReader = new CsvReader(reader, csvConfig);
-
-            var meterReadings = (await Task.FromResult(csvReader.GetRecords<MeterReadingDto>().ToList())).Concat(_csvErrorList);
-
-            return new CSVUploadDto { MeterReadings = meterReadings };
-        }
-
-        private static void AddCsvReadError(List<MeterReadingDto> csvErrorList, ReadingExceptionOccurredArgs ex)
-        {
-            csvErrorList.Add(new MeterReadingDto
-            {
-                ValidationResult = new ValidationResult
-                {
-                    Errors = new List<ValidationFailure>
-                    {
-                        {
-                           new ValidationFailure
-                           {
-                             PropertyName = $"Record: {ex.Exception.Context.Parser.Row}",
-                             ErrorMessage = $"Could not read record for row number: {ex.Exception.Context.Parser.Row}, accountId: {ex.Exception.Context.Parser.Record[0]}"  
-                           }
-                        }
-
-                    }
-                }
-            });
         }
     }
 }

@@ -8,7 +8,7 @@ using Repository.Interfaces;
 
 namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
 {
-    public class CreateReadingsCommandValidator : AbstractValidator<CreateReadingsCommand>
+    public partial class CreateReadingsCommandValidator : AbstractValidator<CreateReadingsCommand>
     {
         private readonly IRepository<MeterReading> _meterReadingRepo;
         private readonly IRepository<Account> _accountRepo;
@@ -38,12 +38,15 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.CreateReadings
 
         private bool ValidateReadingFormat(string readingValue)
         {
-            return Regex.IsMatch(readingValue, @"^[0-9]+$");
+            return NumericRegex().IsMatch(readingValue);
         }
 
         private async Task<bool> ValidateMeterReadingAsync(MeterReadingDto meterReading, CancellationToken cancellationToken)
         {
             return await _meterReadingRepo.FindAsync([meterReading.AccountId, meterReading.MeterReadingDateTime], cancellationToken) == null;
         }
+
+        [GeneratedRegex(@"^[0-9]{1,5}$")]
+        private static partial Regex NumericRegex();
     }
 }

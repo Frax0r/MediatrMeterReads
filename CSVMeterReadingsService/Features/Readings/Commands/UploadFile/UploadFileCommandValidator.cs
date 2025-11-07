@@ -10,8 +10,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
 {
     public class UploadFileCommandValidator : AbstractValidator<UploadFileCommand>
     {
-        private static readonly List<string> _requiredFileColumns = new List<string>
-            {"AccountId","MeterReadingDateTime","MeterReadValue"};
+        private static readonly List<string> _requiredFileColumns = ["AccountId","MeterReadingDateTime","MeterReadValue"];
 
         public UploadFileCommandValidator()
         {
@@ -52,7 +51,7 @@ namespace CSVMeterReadingsService.Features.Readings.Commands.UploadFile
                 csvReader.Read();
                 csvReader.ReadHeader();
 
-                return !_requiredFileColumns.Except(csvReader.HeaderRecord.ToList()).Any();
+                return !_requiredFileColumns.Except([.. csvReader.HeaderRecord]).Any();
             }
             catch
             {
